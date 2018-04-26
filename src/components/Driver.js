@@ -16,7 +16,12 @@ const Driver = (props) => {
       <p><b>Current Location:</b></p>
         <p><b>Latitude:</b> {props.data.location.latitude}</p>
         <p><b>Longitude:</b> {props.data.location.longitude}</p>
-      </div>      
+      </div>
+      { props.data.timeToPickup ? 
+      <p><b>Estimated Pickup Time:</b> {props.data.timeToPickup}</p> 
+      : 
+      <p/> 
+      }
     </div>
   )
 }
