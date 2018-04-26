@@ -6,3 +6,5 @@ export const formatRating = reviews =>
     (a, b) => {return a + b}, 0) / reviews.length || 'no ratings yet'
 
 export const getNearbyDrivers = riderID => axios.get(`http://localhost:3000/api/rider/${riderID}/findDrivers`)
+
+export const getMapLink = location => `https://www.google.com/maps/place/${location.latitude},${location.longitude}`

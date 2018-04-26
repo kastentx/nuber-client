@@ -1,6 +1,6 @@
 import React from 'react'
 import './Rider.css'
-import { formatRating } from '../utilities/tools'
+import { formatRating, getMapLink } from '../utilities/tools'
 
 const Rider = (props) => {
   return (
@@ -12,6 +12,7 @@ const Rider = (props) => {
       <p><b>Current Location:</b></p>
         <p><b>Latitude:</b> {props.data.location.latitude}</p>
         <p><b>Longitude:</b> {props.data.location.longitude}</p>
+        <a target="_blank" href={getMapLink(props.data.location)}>Click here to view on Google Maps.</a>
       </div>      
     </div>
   )

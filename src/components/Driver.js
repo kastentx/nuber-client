@@ -1,6 +1,6 @@
 import React from 'react'
 import './Driver.css'
-import { formatRating } from '../utilities/tools'
+import { formatRating, getMapLink } from '../utilities/tools'
 
 const Driver = (props) => {
   return (
@@ -10,12 +10,13 @@ const Driver = (props) => {
       <p><b>Name:</b> {props.data.name}</p>
       <p><b>Vehicle:</b> {props.data.vehicle}</p>
       <p><b>Capacity:</b> {props.data.capacity}</p>
-      <p><b>Available:</b> {props.data.available}</p>
+      <p><b>Available:</b> {props.data.available ? 'True' : 'False'}</p>
       <p><b>Current Trip:</b> {props.data.location.currentTrip || 'none'}</p>
       <div id='location-section'>
       <p><b>Current Location:</b></p>
         <p><b>Latitude:</b> {props.data.location.latitude}</p>
         <p><b>Longitude:</b> {props.data.location.longitude}</p>
+        <a target="_blank" href={getMapLink(props.data.location)}>Click here to view on Google Maps.</a>
       </div>
       { props.data.timeToPickup ? 
       <p><b>Estimated Pickup Time:</b> {props.data.timeToPickup}</p> 
