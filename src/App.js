@@ -9,15 +9,22 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { 
-      riderID : '',
+      rider : {
+        id : '',
+        lat : '',
+        lng : '',
+      },
       nearbyDrivers : [] }
   }
 
-  setRiderID = rider => {
-    getNearbyDrivers(rider).then(docs => {
-      //console.log(docs.data)
+  setRider = rider => {
+    getNearbyDrivers(rider._id).then(docs => {
       this.setState({
-        riderID: rider,
+        rider: {
+          id : rider._id,
+          lat: rider.location.latitude,
+          lng : rider.location.longitude
+        },
         nearbyDrivers : docs.data
       })
     })
@@ -31,15 +38,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to nUber.</h1>
         </header>        
-        
-        { !this.state.riderID ?
+        { !this.state.rider.id ?
           <span>
-            <h1>nUber Riders:</h1>
-            <h3>click to login.</h3>
-            <RiderList setRider={this.setRiderID}/> 
+            <RiderList setRider={this.setRider}/> 
           </span>
         : 
-        <DriverList driversData={this.state.nearbyDrivers} />
+          <span>
+            <DriverList rider={this.state.rider} driversData={this.state.nearbyDrivers} />
+          </span>
         }
 
       </div>

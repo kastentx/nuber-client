@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Rider from '../components/Rider'
 import axios from 'axios'
 
-export class RiderList extends Component {
+class RiderList extends Component {
   constructor(props) {
     super(props)
     this.state = { ridersData : [] }
@@ -20,23 +20,20 @@ export class RiderList extends Component {
       })
   }
 
-  handleClick = (e) => {
-    let id = e.target.dataset.id;
-    if (!e.target.dataset.id) {
-      id = e.target.parentNode.dataset.id
-    }
-    console.log(`you clicked rider: ${id}`)
-    this.props.setRider(id)
+  handleClick = (rider) => {
+    console.log(`you clicked rider: ${rider._id}`)
+    this.props.setRider(rider)
   }
 
   render() {
     console.log(this.state.ridersData)
     return (
       <div>
-        {this.state.ridersData.map((rider, i) => <Rider key={i} data={rider} handleClick={this.handleClick}/>)}
+        <h1>nUber Riders:</h1>  
+        <h3>click to login.</h3>
+        {this.state.ridersData.map((rider, i) => <Rider key={i} data={rider} handleClick={() => this.handleClick(rider)} />)}
       </div>
     )
-    
   }
 }
 
