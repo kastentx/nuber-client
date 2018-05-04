@@ -1,4 +1,5 @@
 import React from 'react'
+import './TripSummary.css'
 
 const TripSummary = (props) => {
   return (
@@ -11,9 +12,6 @@ const TripSummary = (props) => {
       <p><b>Estimated Travel Time:</b> {props.data.travelTime}</p>
       <p><b>Rate:</b> {props.data.rate}</p>
       <p><b>Cost:</b> {props.data.cost}</p>
-      <div id='trip-map'>
-        map go here.
-      </div>
     </div>
   )
 }
