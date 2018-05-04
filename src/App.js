@@ -65,7 +65,7 @@ class App extends Component {
   }
 
   tripRequest = () => {
-    axios.post(`http://nuber-api.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`, {
+    axios.post(`http://nuber-service.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`, {
       driverID: this.state.selectedDriver,
       dropoff: {
         latitude: this.state.dropoff.lat,
@@ -76,7 +76,7 @@ class App extends Component {
       this.setState({
         tripData: response.data
       })
-      console.log(`http://nuber-api.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`)
+      console.log(`http://nuber-service.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`)
       console.log(response)
     })
     .catch(error => {
