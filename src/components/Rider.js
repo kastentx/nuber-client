@@ -5,11 +5,11 @@ import { formatRating } from '../utilities/tools'
 
 const Rider = (props) => {
   return (
-    <div id='content-block' data-id={props.data._id} onClick={props.handleClick}>
+    <div id='rider-content' data-id={props.data._id} onClick={props.handleClick}>
       <p><b>Rider ID:</b> {props.data._id}</p>
       <p><b>Average Rating:</b> {formatRating(props.data.reviews)}</p>
       <p><b>Name:</b> {props.data.name}</p>
-      <div id='location-section'>
+      <div id='rider-location'>
         <p><b>Current Location:</b></p>
         <LocationMap 
           lat={props.data.location.latitude} 

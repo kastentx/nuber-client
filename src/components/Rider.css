@@ -1,16 +1,15 @@
-#content-block {
+#rider-content {
   background-color: gray;
   border: 3px solid black;
-  padding: 2%;
+  padding: 10px;
   margin: 2% auto 1% auto;
-  max-width: 30%;
-  max-height: 20%;
+  width: 30%;
+  height: 30%;
 }
 
-#location-section {
+#rider-location {
   background-color: rgb(88, 88, 88);
   border: 1px solid black;
-  max-width: 60%;
-  margin: 1% auto 1% auto;
-
+  width: 60%;
+  margin: 5% auto 1% auto;
 }

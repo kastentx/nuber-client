@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './deadpool-logo.png'
+import './App.css'
 import DriverList from './containers/DriverList'
 import RiderList from './containers/RiderList'
 import { getNearbyDrivers } from './utilities/tools'
+import PickupRequest from './containers/PickupRequest'
 
 class App extends Component {
   constructor(props) {
@@ -14,21 +15,47 @@ class App extends Component {
         lat : '',
         lng : '',
       },
-      nearbyDrivers : [] }
+      nearbyDrivers : [],
+      selectedDriver : '',
+      timeToPickup : '',
+      dropoff : {
+        lat : '',
+        lng : '',
+      } 
+    }
   }
 
   setRider = rider => {
     getNearbyDrivers(rider._id).then(docs => {
       this.setState({
-        rider: {
+        rider : {
           id : rider._id,
-          lat: rider.location.latitude,
+          lat : rider.location.latitude,
           lng : rider.location.longitude
         },
-        nearbyDrivers : docs.data
+        nearbyDrivers : docs.data,
+        selectedDriver : ''
       })
     })
-    console.log('setriderID called')
+    console.log('setRider called')
+  }
+
+  setDriver = driver => {
+    this.setState({
+      selectedDriver : driver._id,
+      timeToPickup : driver.timeToPickup
+    })
+    console.log('setDriver called')
+  }
+
+  setDropoff = location => {
+    this.setState({
+      dropoff : {
+        lat: location.lat,
+        lng: location.lng
+      }
+    }, () => console.log(`setDropoff called at ${JSON.stringify(this.state.dropoff)}`))
+    
   }
 
   render() {
@@ -36,16 +63,30 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to nUber.</h1>
-        </header>        
+          <h1 className="App-title">nUber: An app by Team Deadpool</h1>
+        </header>
+  
         { !this.state.rider.id ?
           <span>
-            <RiderList setRider={this.setRider}/> 
+            <RiderList 
+              setRider={this.setRider} 
+            /> 
           </span>
-        : 
+        :
+          <p/>
+        }
+        { this.state.rider.id && !this.state.selectedDriver ? 
           <span>
-            <DriverList rider={this.state.rider} driversData={this.state.nearbyDrivers} />
+            <DriverList 
+              rider={this.state.rider} 
+              driversData={this.state.nearbyDrivers} 
+              setDriver={this.setDriver} 
+            />
           </span>
+        :
+          <PickupRequest 
+            setDropoff={this.setDropoff}  
+          />
         }
 
       </div>

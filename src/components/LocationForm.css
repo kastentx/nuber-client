@@ -1,0 +1,17 @@
+#input-block {
+  background-color: gray;
+  border: 3px solid black;
+  padding: 5%;
+  margin: 2% auto 1% auto;
+  max-width: 40%;
+}
+
+input {
+  width: 60%;
+  margin: 3%;
+  display: inline-block;
+}
+
+button {
+  margin-top: 5%;
+}

@@ -1,12 +1,15 @@
-#content-block {
+#driver-content {
   background-color: gray;
   border: 3px solid black;
-  padding: 5%;
+  padding: 10px;
   margin: 2% auto 1% auto;
-  max-width: 40%;
+  width: 30%;
+  height: 30%;
 }
 
-#location-section {
+#driver-location {
   background-color: rgb(88, 88, 88);
   border: 1px solid black;
+  width: 60%;
+  margin: 5% auto 1% auto;
 }
