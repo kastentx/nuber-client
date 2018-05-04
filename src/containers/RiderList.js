@@ -9,7 +9,7 @@ class RiderList extends Component {
   }
   
   componentDidMount () {
-      axios.get('http://localhost:3000/api/rider/')
+      axios.get('http://nuber-api.herokuapp.com/api/rider/')
       .then(docs => {
         this.setState({
           ridersData : docs.data

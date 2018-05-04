@@ -5,6 +5,8 @@ import DriverList from './containers/DriverList'
 import RiderList from './containers/RiderList'
 import { getNearbyDrivers } from './utilities/tools'
 import PickupRequest from './containers/PickupRequest'
+import TripSummary from './components/TripSummary'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class App extends Component {
       dropoff : {
         lat : '',
         lng : '',
-      } 
+      },
+      tripData : null 
     }
   }
 
@@ -54,8 +57,32 @@ class App extends Component {
         lat: location.lat,
         lng: location.lng
       }
-    }, () => console.log(`setDropoff called at ${JSON.stringify(this.state.dropoff)}`))
+    }, () => {
+      console.log(`setDropoff called at ${JSON.stringify(this.state.dropoff)}`)
+      this.tripRequest()
+    })
     
+  }
+
+  tripRequest = () => {
+    axios.post(`http://nuber-api.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`, {
+      driverID: this.state.selectedDriver,
+      dropoff: {
+        latitude: this.state.dropoff.lat,
+        longitude: this.state.dropoff.lng
+      }
+    })
+    .then(response => {
+      this.setState({
+        tripData: response.data
+      })
+      console.log(`http://nuber-api.herokuapp.com/api/rider/${this.state.rider.id}/requestPickup`)
+      console.log(response)
+    })
+    .catch(error => {
+      console.error(error)
+    });
+
   }
 
   render() {
@@ -84,11 +111,20 @@ class App extends Component {
             />
           </span>
         :
-          <PickupRequest 
-            setDropoff={this.setDropoff}  
-          />
+          <p/>
         }
-
+        { this.state.selectedDriver && this.state.dropoff.lat === '' ? 
+            <PickupRequest 
+              setDropoff={this.setDropoff}  
+            />
+          :
+            <p/>
+        }
+        { this.state.tripData ?
+          <TripSummary data={this.state.tripData} />
+        :
+          <p/>
+        }
       </div>
     );
   }

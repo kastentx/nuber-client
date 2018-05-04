@@ -12,7 +12,8 @@ class DriverList extends Component {
       <div>
         <h1>nUber Drivers:</h1>  
         <h3>select a driver to request a pickup.</h3>
-        {this.props.driversData.map((driver, i) => {
+        { this.props.driversData.length > 0 ?
+          this.props.driversData.map((driver, i) => {
           return (
             <Driver 
               key={i} 
@@ -21,8 +22,10 @@ class DriverList extends Component {
               riderLng={this.props.rider.lng}
               handleClick={() => this.handleClick(driver)}
             />
-          )
-        })}
+          )})
+        :
+          <h4>We're sorry, but there are no active drivers in your area.</h4>
+        }
       </div>
     )
   }

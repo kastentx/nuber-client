@@ -1,0 +1,15 @@
+#trip-content {
+  background-color: gray;
+  border: 3px solid black;
+  padding: 10px;
+  margin: 2% auto 1% auto;
+  width: 30%;
+  height: 30%;
+}
+
+#trip-map {
+  background-color: rgb(88, 88, 88);
+  border: 1px solid black;
+  width: 60%;
+  margin: 5% auto 1% auto;
+}
